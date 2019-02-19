@@ -1,6 +1,17 @@
 import {first,rest,map} from './es_liszt.js'
-import {init,parallel,append,series,put} from './beatnik.js'
-import {lor_ip,link,container} from './elemental.js'
+import {init,parallel,append,series,put,empty} from './beatnik.js'
+import {lor_ip,link,container,pic_box} from './elemental.js'
+
+const add_class = (cname) => (el) => {
+  el.className = cname
+  return el
+}
+
+const text_box = (content) => {
+  const tb = document.createElement('text')
+  tb.textContent = content
+  return tb
+}
 
 export const link_list = (ls) => {
   const block = lor_ip('link-list')
@@ -13,30 +24,25 @@ export const slideshow = (ls) => {
   const state = init(ls)
 
   const slideshow = container('slideshow')
-  const canvas = container('canvas')
-  const info = container('info')
 
-  const newPic = (host) => (ls) => {
-    host.className = 'fade-out'
-    setTimeout(() =>
-               (host.style.backgroundImage = `url(${first(ls).right})`) &&  (host.className = 'fade-in'),500)
-  }
-
-  const newInfo = (host) => (ls) => {
-    host.className = 'fade-out'
-    setTimeout(() => 
-               (host.textContent = `${first(ls).left}`) &&  (host.className = 'fade-in'),500)    
-  }
-
-  const render = parallel(newPic(canvas))(newInfo(info))
+  const newFrame = (ls) => series
+  (add_class('fade-out'))
+  ((host) => setTimeout(() => series
+                        (empty)
+                        (put(pic_box(first(ls).right)))
+                        (put(append(lor_ip('info'))(text_box(first(ls).left))))
+                        (add_class('fade-in'))()(host),500))
+  ()(slideshow)
+   
+  const render = series(newFrame)
 
   const update = () => (rest(state.get()))
         ? state.set(rest(state.get()),render)
         : state.set(ls,render)
 
-  canvas.addEventListener('click',update)
+  slideshow.addEventListener('click',update)
   state.set(ls,render)
-  return series(put(canvas))(put(info))()(slideshow)
+  return slideshow
 }
 
 export const video = (ls) => {

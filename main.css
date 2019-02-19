@@ -42,7 +42,7 @@ body {
     justify-content: space-between;
 }
 
-#canvas {
+.pic-box {
     margin: 2%;
     height: 90%;
     width: 70%;
@@ -51,7 +51,7 @@ body {
     background-repeat: no-repeat;
 }
 
-#info {
+.info {
     width: 30%;
     margin: 2%;
     font-size: 2em;
