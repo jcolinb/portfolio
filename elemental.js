@@ -28,3 +28,14 @@ export const pic_box = (url) => {
   base.append(overlay)
   return base
 }
+
+export const add_class = (cname) => (el) => {
+  el.className = cname
+  return el
+}
+
+export const text_box = (content) => {
+  const tb = document.createElement('text')
+  tb.textContent = content
+  return tb
+}
