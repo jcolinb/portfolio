@@ -125,12 +125,12 @@ main {
         justify-content: center;
     }
 
-    #canvas {
+    .pic-box {
         height: 90%;
         width: 95%;
     }
 
-    #info {
+    .info {
         height: 10%;
         width: 100%;
         font-size: 1.5em;
