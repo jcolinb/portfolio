@@ -11,17 +11,16 @@ export const link_list = (ls) => {
 export const slideshow = (ls) => {
 
   const state = init(ls)
-
   const slideshow = container('slideshow')
-
-  const newFrame = (ls) => series
-  (add_class('fade-out'))
-  ((host) => setTimeout(() => series
-                        (empty)
-                        (put(pic_box(first(ls).right)))
-                        (put(append(lor_ip('info'))(text_box(first(ls).left))))
-                        (add_class('fade-in'))()(host),500))
-  ()(slideshow)
+  const newFrame = (ls) => 
+          series
+           (add_class('fade-out'))
+           ((host) => setTimeout(() => 
+                                 series
+                                  (empty)
+                                  (put(pic_box(first(ls).right)))
+                                  (put(append(lor_ip('info'))(text_box(first(ls).left))))
+                                  (add_class('fade-in'))()(host),500))()(slideshow)
    
   const render = series(newFrame)
 

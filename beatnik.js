@@ -6,12 +6,14 @@ export const series = pipe(id)
 
 export const parallel = ppipe(id)
 
+export const one_off = (fn) => () => (a) => fn(a)
+
 export const legba = () => {
   const actions = {}
   return ({
     sub: (act) => (fn) => (actions[act])
-      ? Object.assign(actions,{[act]: actions[act](fn)})
-      : Object.assign(actions,{[act]: parallel(fn)}),
+      ? Object.assign(actions,{[act]: actions[act](fn())})
+      : Object.assign(actions,{[act]: parallel(fn())}),
     pub: (act) => (data) => actions[act] && actions[act]()(data)
   })
 }

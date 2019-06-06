@@ -6,6 +6,10 @@ export const cons = ($) => ($$=null) => ({$,$$})
 
 export const pair = (left) => (right=null) => ({left,right})
 
+export const left = ({left}) => left
+
+export const right = ({right}) => right
+
 export const map = (fn) => (ls) =>
       ls && cons(fn(first(ls)))(map(fn)(rest(ls)))
 
@@ -26,18 +30,18 @@ export const last = (ls) => !rest(ls) && ls || last(rest(ls))
 
 export const reverse = reduce((a,c) => cons(c)(a),null)
 
-export const append = (l) => (r) => reduce((a,c)=>cons(c)(a),r)(reverse(l))
+export const append = (l) => (r) => reduce((a,c) => cons(c)(a),r)(reverse(l))
 
-export const list = (a) => (b=null) => 
+export const list = (a) => (b=null) =>
       (!b) 
-        ? (a.$) 
-          ? a 
+        ? (a.$)
+          ? a
           : cons(a)(null)
         : list(append((a.$) ? a : cons(a)(null))(cons(b)(null)))
 
-export const pipe = (a) => (fn=null) => 
-      (!fn) 
-        ? (x) => reduce((a,c)=>c(a),x)(a) 
+export const pipe = (a) => (fn=null) =>
+      (!fn)
+        ? (x) => reduce((a,c)=>c(a),x)(a)
         : pipe((!first(a)) ? append(cons(a)(null))(cons(fn)(null)) : append(a)(cons(fn)(null)))
 
 export const ppipe = (a) => (fn=null) => 
@@ -55,3 +59,4 @@ export const snitch = (tag) => (ls) =>
       ls 
       || console.log(`${tag}: I got nothin\'`) 
       ||  null
+

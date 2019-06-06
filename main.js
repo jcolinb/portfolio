@@ -9,7 +9,9 @@ const cont = document.getElementById('container')
 
 const phone = () => window.matchMedia("(max-width:450px)").matches
 
-const update = (next) => series(() => cont.className = 'fade-in')(() => append(empty(cont))(next))()
+const update = (next) => series
+                         (() => cont.className = 'fade-in')
+                         (() => append(empty(cont))(next))
 
 acts.sub('arts')(update(slideshow(works())))
 acts.sub('vids')(update(video(vids())))
@@ -17,7 +19,7 @@ acts.sub('links')(update(link_list(links())))
 acts.sub('p5')(series
                (() => cont.className = 'fade-in')
                (()=>empty(cont))
-               (()=> {new p5((phone()) ? disco(300) : disco(500),cont)})())
+               (()=> {new p5((phone()) ? disco(300) : disco(500),cont)}))
 
 document.getElementById('vid-link').addEventListener('click',acts.pub('vids'))
 document.getElementById('art-link').addEventListener('click',acts.pub('arts'))
