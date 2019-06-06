@@ -14,7 +14,7 @@ const update = (next) => series
                          (() => append(empty(cont))(next))
 
 acts.sub('arts')(update(slideshow(works())))
-acts.sub('vids')(update(video(vids())))
+acts.sub('vids')(update(video('videos coming soon')))
 acts.sub('links')(update(link_list(links())))
 acts.sub('p5')(series
                (() => cont.className = 'fade-in')

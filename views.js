@@ -1,6 +1,6 @@
 import {first,rest,map} from './es_liszt.js'
 import {init,parallel,append,series,put,empty} from './beatnik.js'
-import {lor_ip,link,container,pic_box,text_box,add_class} from './elemental.js'
+import {lor_ip,link,container,pic_box,text_box,add_class,placeholder} from './elemental.js'
 
 export const link_list = (ls) => {
   const block = lor_ip('link-list')
@@ -33,14 +33,16 @@ export const slideshow = (ls) => {
   return slideshow
 }
 
-export const video = (ls) => {
-  const outer = container('slideshow')
-  const player = document.createElement('video')
-  player.controls = true
-  player.src = first(ls).right
-  return series
-  (put(player))
-  (put(append(lor_ip('info'))(text_box(first(ls).left))))
-  ()(outer)
-}
+export const video = placeholder
+
+//export const video = (ls) => {
+//  const outer = container('slideshow')
+//  const player = document.createElement('video')
+//  player.controls = true
+//  player.src = first(ls).right
+//  return series
+//  (put(player))
+//  (put(append(lor_ip('info'))(text_box(first(ls).left))))
+//  ()(outer)
+//}
 

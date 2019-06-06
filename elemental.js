@@ -1,3 +1,5 @@
+import {append} from './beatnik.js'
+
 export const container = (id) => {
   const cont = document.createElement('div')
   cont.id = id
@@ -39,3 +41,6 @@ export const text_box = (content) => {
   tb.textContent = content
   return tb
 }
+
+export const placeholder = (str) => append(add_class('placeholder')(container(str)))(text_box(str))
+
